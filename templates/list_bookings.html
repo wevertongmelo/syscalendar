@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Reservas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+        <h1>Lista de Reservas</h1>
+
+    <main>
+        {% if bookings %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Equipamento</th>
+                        <th>Descrição</th>
+                        <th>Data de Início</th>
+                        <th>Data de Fim</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.id }}</td>
+                            <td>{{ booking.equipment.name }}</td>
+                            <td>{{ booking.equipment.description }}</td>
+                            <td>{{ booking.start_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td>{{ booking.end_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Você ainda não tem reservas.</p>
+        {% endif %}
+    </main>
+    <footer>
+        <p>&copy; xxx</p>
+    </footer>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Relatório de Reservas</h1>
+    <p>O relatório foi gerado com sucesso. Clique no botão abaixo para baixá-lo.</p>
+    <a href="{{ url_for('booking_controller.report') }}" class="btn btn-primary">Baixar Relatório</a>
+{% endblock %}

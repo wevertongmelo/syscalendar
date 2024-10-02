@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>            <ul>
+                <li><a href="{{ url_for('user_controller.dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('user_controller.login') }}">Login</a></li>
+                <li><a href="{{ url_for('equipment_controller.add_equipment') }}">Add Equipment</a></li>
+                <li><a href="{{ url_for('booking_controller.create_booking') }}">Create Booking</a></li>
+                <li><a href="{{ url_for('booking_controller.list_bookings') }}">List Booking</a></li>
+                <li><a href="{{ url_for('booking_controller.report') }}">Report</a></li>
+                <li><a href="{{ url_for('user_controller.logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

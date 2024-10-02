@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Equipamentos</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if equipments %}
+            {% for equipment in equipments %}
+                <tr>
+                    <td>{{ equipment.id }}</td>
+                    <td>{{ equipment.name }}</td>
+                    <td>{{ equipment.description }}</td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="3">Nenhum equipamento encontrado.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('equipment_controller.add_equipment') }}">Adicionar Novo Equipamento</a>
+{% endblock %}

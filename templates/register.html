@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head><link rel="stylesheet" href="/static/styles.css"></head>
+<h1>Registrar</h1>
+
+<!-- Exibir mensagens flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<form method="post" class="registration-form">
+    <label for="username">Nome de usuário:</label>
+    <input type="text" id="username" name="username" required><br>
+    
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" required><br>
+    
+    <input type="submit" value="Registrar">
+</form>
+
+
+{% endblock %}

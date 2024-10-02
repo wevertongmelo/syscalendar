@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        <p>Here is your dashboard where you can manage your bookings, equipment, and more.</p>
+
+        <div class="section">
+            <h2>Your Bookings</h2>
+            <ul class="booking-list">
+                {% if bookings %}
+                    {% for booking in bookings %}
+                        <li class="booking-item">
+                            {{ booking.equipment.name }} - {{ booking.start_time }} to {{ booking.end_time }}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="booking-item">No bookings found.</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Your Equipment</h2>
+            <ul class="equipment-list">
+                {% if equipment %}
+                    {% for equip in equipment %}
+                        <li class="equipment-item">
+                            {{ equip.name }} - {{ equip.description }}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="equipment-item">No equipment found.</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+{% endblock %}
